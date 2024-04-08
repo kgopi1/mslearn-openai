@@ -2,6 +2,7 @@ import os
 from dotenv import load_dotenv
 
 # Add Azure OpenAI package
+from openai import AzureOpenAI
 
 
 def main(): 
@@ -30,6 +31,21 @@ def main():
             print("\nSending request for summary to Azure OpenAI endpoint...\n\n")
             
             # Add code to send request...
+            # Add code to send request...
+            # Send request to Azure OpenAI model
+           response = client.chat.completions.create(
+            model=azure_oai_deployment,
+            temperature=0.7,
+            max_tokens=400,
+            messages=[
+                {"role": "system", "content": system_message},
+                {"role": "user", "content": input_text}
+            ]
+                )
+        generated_text = response.choices[0].message.content
+
+# Print the response
+print("Response: " + generated_text + "\n")
             
             
             
